@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+in  vec4 aPosition;
+in  vec4 aColor;
+out vec4 vColor;
+//0 - SCALE
+//1 - ROTATE
+//2 - TRANSLATE
+
+uniform vec3 uTheta;
+uniform vec3 translation;
+uniform vec3 scale;
+
+void main()
+{
+    mat4 idMtx = mat4(1.0,  0.0,  0.0, 0.0,
+                            0.0,  1.0,  0.0, 0.0,
+                            0.0,  0.0,  1.0, 0.0,
+                            0.0,  0.0,  0.0, 1.0);
+
+    //Translational Matricies
+    mat4 txyz = idMtx;
+    
+    //Rotational matricies
+    mat4 rx = idMtx;
+    mat4 ry = idMtx;
+    mat4 rz = idMtx;
+    vec3 angles;
+    vec3 c; //Cosine
+    vec3 s; //sine
+    
+    //Scaling matricies
+    mat4 sxyz = idMtx;
+
+
+    //Translation
+    txyz = mat4(1.0,  0.0,  0.0, 0.0,
+                0.0,  1.0,  0.0, 0.0,
+                0.0,  0.0,  1.0, 0.0,
+                translation.x,  translation.y,  translation.z, 1.0);
+    
+
+    //Rotation                
+    // Compute the sines and cosines of theta for each of
+    //   the three axes in one computation.
+
+    angles = radians(uTheta);
+    c = cos(angles);
+    s = sin(angles);
+
+    // Remember: these matrices are column-major
+    rx = mat4(1.0,  0.0,  0.0, 0.0,
+            0.0,  c.x,  s.x, 0.0,
+            0.0, -s.x,  c.x, 0.0,
+            0.0,  0.0,  0.0, 1.0);
+
+    ry = mat4(c.y, 0.0, -s.y, 0.0,
+            0.0, 1.0,  0.0, 0.0,
+            s.y, 0.0,  c.y, 0.0,
+            0.0, 0.0,  0.0, 1.0);
+
+
+    rz = mat4(c.z, s.z, 0.0, 0.0,
+            -s.z,  c.z, 0.0, 0.0,
+            0.0,  0.0, 1.0, 0.0,
+            0.0,  0.0, 0.0, 1.0);
+    
+
+    //Scaling
+    sxyz = mat4(scale.x,  0.0,  0.0,     0.0,
+                0.0,  scale.y,  0.0,     0.0,
+                0.0,      0.0,  scale.z, 0.0,
+                0.0,      0.0,  0.0,     1.0);
+    
+
+
+
+    vColor = aColor;
+
+    gl_Position = txyz * (rz * ry * rx) * sxyz * aPosition;
+
+    // gl_Position.z = -gl_Position.z;
+}
+
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+
+precision mediump float;
+
+in vec4 vColor;
+out vec4 fColor;
+
+void
+main()
+{
+    fColor = vColor;
+}
+</script>
+
+<script type="text/javascript" src="./Common/initShaders.js"></script>
+<script type="text/javascript" src="./Common/MV.js"></script>
+<script type="text/javascript" src="3DCube.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="512"" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+<br/>
+
+Select a value from Transformation Type menu  to choose the type of transformation you would like to use. <br />
+Use the controls below to control the transformation parameters. Changing the delta value will require multiple key presses.
+<br />
+<br />
+<table>
+    <tr>
+        <td style="width: 400px;">
+            Transformation Type:
+            <select id="TransformationType" >
+                <option hidden>Select a type</option>
+                <option value="1">SCALE</option>
+                <option value="2">ROTATE</option>
+                <option value="3">TRANSLATE</option>
+                
+            </select>
+            <br />
+            Delta: <span id="output"></span>
+        </td>
+        <td style="width: 300px;">
+            w- increase x value<br />
+            s- decrease x value<br />
+            d- increase y value<br />
+            a- decrease y value<br />
+            0- increase z value<br />
+            9- decrease z value<br />
+            p- increment delta value<br />
+            o- decrement delta value<br />
+            r- reset all values<br />
+        </td>
+    </tr>
+</table>
+
+
+
+
+</body>
+</html>

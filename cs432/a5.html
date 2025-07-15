@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+#version 300 es
+
+uniform mat4 modelView;
+uniform mat4 projection;
+
+in  vec4 aPosition;
+in  vec4 aColor;
+flat out vec4 vColor;
+
+void main()
+{
+    vColor = aColor;
+    gl_Position = projection * modelView * aPosition;
+}
+
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+#version 300 es
+
+precision mediump float;
+
+flat in vec4 vColor;
+out vec4 fColor;
+
+void
+main()
+{
+    fColor = vColor;
+}
+</script>
+
+<script type="text/javascript" src="./Common/initShaders.js"></script>
+<script type="text/javascript" src="./Common/MV.js"></script>
+<script type="text/javascript" src="Assignment05.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="512"" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+<br/>
+<table>
+    <tr>
+        <td style="width: 400px; vertical-align:top">
+        <input type = 'file' name='file' id = 'files' /><br /><br />
+        Q - increase θ <br />
+        E - decrease θ <br />
+        W - increase camera radius <br />
+        S - decrease camera radius <br />
+        D - increase height <br />
+        A - decrease height <br />
+        R - Reset all <br />
+        </td>
+        <td style="width: 400px; vertical-align:top">
+        <input type="checkbox" id="relativeScale" /> Scale model to default view volume<br /><br />
+        What projection do you want to use? <br />
+        <select id="projectionChoice" >
+            <option value="0">Perspective</option>
+            <option value="1">Parallel</option>
+        </select> <br /><br />
+
+        Cylindrical Orbit:<br />
+        h = <span id="h"></span> <br />
+        r = <span id="r"></span> <br />
+        theta = <span id="theta"></span>
+    
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

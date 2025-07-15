@@ -1,0 +1,156 @@
+<html>
+<head>
+<title> Austin Eversole - CS636 Advanced Rendering Techniques - Assignment 2 </title>
+</head>
+<body bgcolor="#B5EBFF">
+<a href="../index.html">(Return to home)</a>
+
+
+<br />
+<br />
+<br />
+<br />
+<img src="a2/render.png" /><br /><br />
+Computation time: 12474.48 sec<br />
+Size: 1024x1024<br />
+<br /><br />
+<img src="a2/render_supersampled.png" /><br /><br />
+Computation time: 0.179 sec after the 1024x1024 render<br />
+Size: 512x512 <br />
+<br /><br />
+
+I'm looking forward to applying the optimizations since, as is evident from this render, my code takes an enormous amount of time to compute polygon meshes :)
+
+<div style="font-weight:bold; text-decoration: underline;">Scene variables:</div>
+<br />
+
+Camera at (3, 0, 0)
+<ul>
+<li>View direction is (-1, 0, 0) </li>
+<li>Camera up angle is (0, 1, 0)</li>
+<li>Camera horizontal angle is (0, 1, 0)</li>
+</ul>
+
+Point Light at (3, 2, 0) 
+<ul>
+<li>Intensity (255, 255, 255)</li>
+<li>Attenuation value: 0.5 </li>
+</ul>
+
+Point Light at (3, -2, 0) 
+<ul>
+<li>Intensity (255, 128, 128)</li>
+<li>Attenuation value: 0.5 </li>
+</ul>
+
+Sphere with radius 0.25, with center of (0, -1.2, 1.3)<br />
+<ul>
+<li>Ambient color (3, 25, 76)</li>
+<li>Diffuse color (25, 51, 102)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 10</li> 
+</ul>
+
+Sphere with radius 0.25, with center of (0, -1.2, 1.3)<br />
+<ul>
+<li>Ambient color (3, 25, 76)</li>
+<li>Diffuse color (25, 51, 102)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 80</li> 
+</ul>
+
+Sphere with radius 0.4,  with center of (0, 0, 0)<br />
+<ul>
+<li>Ambient color (76, 76, 76)</li>
+<li>Diffuse color (128, 163, 193)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 5</li> 
+</ul>
+
+Bridge (cube.smf) at origin - translated down and scaled by factor of (1,3,0.1)<br />
+<ul>
+<li>Ambient color (23, 63, 255)</li>
+<li>Diffuse color (153, 255, 255)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 10</li> 
+</ul>
+
+Floating AI Robot (monitor.smf) at origin - rotated 45 degrees <br />
+<ul>
+<li>Ambient color (25, 25, 25)</li>
+<li>Diffuse color (153, 255, 255)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 2</li> 
+</ul>
+<br /><br />
+
+
+<br />
+<br />
+<br />
+<br />
+<img src="a2/output_image.png" /><br /><br />
+Computation time: 300.06 sec<br />
+Size: 1024x1024<br />
+<br /><br />
+<img src="a2/output_supersampled.png" /><br /><br />
+Computation time: 0.1863 sec after the 1024x1024 render<br />
+Size: 512x512 <br />
+<br /><br />
+<div style="font-weight:bold; text-decoration: underline;">Scene variables:</div>
+<br />
+
+Camera at (3, 0, 0)
+<ul>
+<li>View direction is (-1, 0, 0) </li>
+<li>Camera up angle is (0, 1, 0)</li>
+<li>Camera horizontal angle is (0, 1, 0)</li>
+</ul>
+
+Point Light at (3, 1, 0) 
+<ul>
+<li>Intensity (255, 255, 255)</li>
+<li>Attenuation value: 0.5 </li>
+</ul>
+
+Point Light at (3, -1, 0) 
+<ul>
+<li>Intensity (255, 128, 128)</li>
+<li>Attenuation value: 0.5 </li>
+</ul>
+
+Sphere with radius 0.75, with center of (0, 1, 1)<br />
+<ul>
+<li>Ambient color (25, 25, 25)</li>
+<li>Diffuse color (178, 178, 178)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 60</li> 
+</ul>
+
+Sphere with radius 0.6, with center of (0, -1, 1)<br />
+<ul>
+<li>Ambient color (3, 25, 76)</li>
+<li>Diffuse color (51, 102, 204)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 30</li> 
+</ul>
+
+Octahedron (octahedron.smf) at origin<br />
+<ul>
+<li>Ambient color (51, 25, 2)</li>
+<li>Diffuse color (204, 102, 2)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 1</li> 
+</ul>
+
+Smooth shaded Cube (cube.smf) at origin - translated by (0,-1,0)<br />
+<ul>
+<li>Ambient color (23, 63, 255)</li>
+<li>Diffuse color (153, 255, 255)</li>
+<li>Specular color (255, 255, 255)</li>
+<li>Shinniness coeffecient: 1</li> 
+</ul>
+
+
+</body>
+</html>
